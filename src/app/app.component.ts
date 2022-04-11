@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit
 } from '@angular/core';
 import {
   concat,
@@ -20,6 +19,8 @@ import {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  // REMOVE THE ANYS
 
   constructor(private http:HttpClient) {}
 
@@ -51,16 +52,6 @@ export class AppComponent {
       });
     })
 
-    // mergeMap
-    sourceOfData.pipe(
-      tap(() => console.log('Saving data')),
-      mergeMap((data) => this.http.post('http://localhost:3000/data', data)),
-    ).subscribe((res) => {
-      console.log('res', res);
-      // handle data
-    })
-
-    // concatMap
     sourceOfData.pipe(
       tap(() => console.log('Saving data')),
       concatMap((data) => this.http.post('http://localhost:3000/data', data)),
@@ -69,8 +60,6 @@ export class AppComponent {
       // handle data
     })
   }
-
-  // helpers
 
   public getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
